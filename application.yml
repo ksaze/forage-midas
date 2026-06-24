@@ -1,0 +1,18 @@
+general:
+  kafka-topic: trader-updates
+  incentive-api-url: "https://localhost:8080/incentive"
+
+server:
+  port: 33400
+
+spring:
+  kafka:
+    consumer:
+      group-id: midas
+      auto-offset-reset: earliest
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.jpmc.midascore.foundation"
+        spring.json.value.default.type: com.jpmc.midascore.foundation.Transaction
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
